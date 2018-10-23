@@ -88,11 +88,16 @@ int main(int argc, char const *argv[]) {
 
                 n = tp_recvfrom(server_fd, datagramaRecv, atoi(tam_buffer), &local_addr);
 
-                if(n == -1 && errno == 11)
-                    continue; // Envia uma confirmação novamente em caso de timeout
+                if(n == -1 && errno == 11){
+					printf("Timeout. Enviando confirmação novamente. \n");
+					continue; // Envia uma confirmação novamente em caso de timeout
+				}
+                    
 
-                if(strcmp(ultimoDatagramaRecv, datagramaRecv) == 0)
-                    continue; // Envia uma confirmação novamente em caso de datagrama repetido
+                if(strcmp(ultimoDatagramaRecv, datagramaRecv) == 0){
+					printf("Datagrama repetido. Enviando confirmação novamente. \n");
+    				continue; // Envia uma confirmação novamente em caso de datagrama repetido
+				}                
                 else
                     strcpy(ultimoDatagramaRecv, datagramaRecv);
 
