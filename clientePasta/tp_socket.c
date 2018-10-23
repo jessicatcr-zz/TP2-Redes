@@ -13,7 +13,7 @@
 int tp_sendto(int so, char* buff, int buff_len, so_addr* to_addr)
 {
     int count;
-    fprintf(stderr, "tp_sendto called (%d bytes)\n", buff_len);
+    //fprintf(stderr, "tp_sendto called (%d bytes)\n", buff_len);
 
     count = sendto(so, (void*)buff, buff_len, 0,
             (struct sockaddr*) to_addr, sizeof(struct sockaddr_in));
@@ -27,7 +27,7 @@ int tp_recvfrom(int so, char* buff, int buff_len, so_addr* from_addr)
 {
     int count;
     unsigned int sockaddr_len = sizeof(struct sockaddr_in);
-    fprintf(stderr, "tp_recvfrom called (%d bytes)\n", buff_len);
+    //fprintf(stderr, "tp_recvfrom called (%d bytes)\n", buff_len);
 
     count = recvfrom(so,(void*)buff,(size_t)buff_len,0,
             (struct sockaddr*) from_addr, &sockaddr_len);

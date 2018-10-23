@@ -83,7 +83,7 @@ int main(int argc, char const *argv[]) {
             do
             {
                 datagramaSend[0] = '1';
-                sprintf(datagramaSend, "%i", recebidos);
+                sprintf(datagramaSend + 1, "%i", recebidos);
                 tp_sendto(server_fd, datagramaSend, atoi(tam_buffer), &local_addr);
 
                 n = tp_recvfrom(server_fd, datagramaRecv, atoi(tam_buffer), &local_addr);

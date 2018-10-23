@@ -114,8 +114,10 @@ int main(int argc, char *argv[]) {
                 tp_sendto(server_fd, datagramaSend, atoi(tam_buffer), &local_addr);
                 n = tp_recvfrom(server_fd, datagramaRecv, atoi(tam_buffer), &local_addr);
 
-                if(n == -1 && errno == 11)
-                    continue; // envia os dados novamente em caso de timeout
+                if(n == -1 && errno == 11){
+					printf("Timeout. Enviando confirmação novamente. \n");
+    				continue; // envia os dados novamente em caso de timeout
+				}                
 
                 sscanf(datagramaRecv + 1, "%i", &recebidos);
 
